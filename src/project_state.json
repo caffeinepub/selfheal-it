@@ -1,0 +1,95 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Self-healing app for IT support that detects common IT issues and provides automated fixes or guided troubleshooting steps.",
+  "architectural_notes": [],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Minimalist wrench+spark logo, flat vector style, dark on transparent background (selfheal-logo.dim_512x512.png)\n- Isometric IT support desk illustration with laptop, router, and checklist, soft neutral palette (it-support-hero.dim_1600x900.png)\n- Set of 6 flat monochrome category icons (network, vpn, email, printer, performance, account) on transparent background (category-icons-sprite.dim_1024x1024.png)",
+  "existing_features": [
+    {
+      "id": "feature-implement-internet-identity-sign-in-and-use-the-authenticated-principal-as-the-user-identity-for-all-saved-troubleshooting-sessions-and-history",
+      "title": "Implement Internet Identity sign-in and use the authenticated principal as the user identity for all saved troubleshooting sessions and history.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-guided-issue-intake-flow-where-a-user-selects-an-issue-category-e-g-network-wi-fi-vpn-email-printer-slow-computer-account-password-software-install-and-answers-a-short-symptom-questionnaire-to-generate-a-troubleshooting-session",
+      "title": "Create a guided “Issue Intake” flow where a user selects an issue category (e.g., Network/Wi‑Fi, VPN, Email, Printer, Slow Computer, Account/Password, Software Install) and answers a short symptom questionnaire to generate a troubleshooting session.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-provide-a-built-in-catalog-of-common-it-issues-with-guided-troubleshooting-steps-runbooks-including-decision-points-and-clear-instructions-and-show-the-recommended-runbook-in-the-session-detail-view",
+      "title": "Provide a built-in catalog of common IT issues with guided troubleshooting steps (“runbooks”), including decision points and clear instructions, and show the recommended runbook in the session detail view.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-support-automated-fixes-as-safe-simulated-actions-since-the-app-cannot-directly-control-the-user-s-device-by-presenting-one-click-actions-that-record-an-outcome-and-show-what-to-do-on-the-device-copyable-commands-or-ui-navigation-rather-than-executing-system-changes",
+      "title": "Support “automated fixes” as safe, simulated actions (since the app cannot directly control the user’s device), by presenting one-click actions that record an outcome and show what to do on the device (copyable commands or UI navigation) rather than executing system changes.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-troubleshooting-outcomes-and-escalation-support-users-can-mark-a-session-resolved-or-escalate-it-by-generating-a-concise-incident-summary-symptoms-steps-attempted-results-that-can-be-copied-for-an-it-ticket",
+      "title": "Add troubleshooting outcomes and escalation support: users can mark a session resolved, or escalate it by generating a concise incident summary (symptoms, steps attempted, results) that can be copied for an IT ticket.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-history-view-where-users-can-search-and-filter-their-past-sessions-by-status-and-category-and-open-a-session-to-review-the-troubleshooting-timeline",
+      "title": "Create a “History” view where users can search and filter their past sessions by status and category, and open a session to review the troubleshooting timeline.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-coherent-distinctive-visual-theme-for-an-it-support-product-and-enforce-it-consistently-across-pages-typography-spacing-components-and-tone-using-english-for-all-user-facing-text",
+      "title": "Apply a coherent, distinctive visual theme for an IT support product and enforce it consistently across pages (typography, spacing, components, and tone), using English for all user-facing text.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-generate-required-static-image-assets-and-render-them-in-the-ui-from-frontend-public-assets-generated-do-not-fetch-images-through-the-backend",
+      "title": "Generate required static image assets and render them in the UI from frontend/public/assets/generated (do not fetch images through the backend).",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Build a self-healing IT support app that detects common IT issues and provides automated fixes or guided resolution steps.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Add backend support for troubleshooting sessions, including creating a session, updating its status (in_progress/resolved/escalated), appending step outcomes, and listing sessions for the current user.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "SelfHeal IT",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

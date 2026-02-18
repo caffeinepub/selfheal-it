@@ -1,0 +1,102 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-18T05:04:01.833Z",
+  "summary": "Diff adds a new Motoko backend actor with access-control + user profiles + troubleshooting sessions/runbooks types, and a new React/TanStack Router frontend with auth gating, intake category/symptom UI components, stepper UI with “Quick Action” simulated fixes, and resolve/escalate UI. Several BuildRequest requirements are not fully evidenced (notably required backend API surface, built-in runbook catalog size/seeding, software-install category, and resolution timestamp/locking semantics).",
+  "missing_requirements": [
+    {
+      "id": "REQ-2",
+      "requirement": "Include a “Software Install” issue category option in the Issue Intake flow.",
+      "reason": "The category picker and history filters only list 6 categories (network/vpn/email/printer/performance/account) and do not include “Software Install”, which is explicitly listed in REQ-2.",
+      "evidence": [
+        "frontend/src/components/intake/CategoryPicker.tsx",
+        "frontend/src/components/history/HistoryFilters.tsx"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "requirement": "Backend exposes methods to: createSession, getSession, listMySessions, recordStepResult, setSessionStatus; sessions persist and access to other users’ sessions is rejected.",
+      "reason": "The backend code shown uses different method names (e.g., startSession) and the required methods are not evidenced in the provided truncated backend snippet. Persistence across reloads is also not evidenced because the snippet shows non-stable in-memory Maps and does not show stable storage or upgrade hooks.",
+      "evidence": [
+        "backend/main.mo (truncated)",
+        "frontend/src/hooks/useQueries.ts (truncated)"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "requirement": "Provide a built-in runbook catalog with at least 6 categories and at least 3 runbooks per category (minimum 18 total), and show the recommended runbook in the session detail view.",
+      "reason": "While the frontend references a RUNBOOK_CATALOG and includes runbook-stepping UI, the diff summary does not include evidence that the catalog contains ≥18 runbooks or that the backend has a built-in seeded catalog (backend runbooks Map is initialized empty and only shows an admin-only createRunbook API).",
+      "evidence": [
+        "backend/main.mo (truncated)",
+        "frontend/src/lib/recommendation.ts",
+        "frontend/src/components/session/RunbookStepper.tsx (truncated)"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "requirement": "Marking a session Resolved locks step editing and records a resolution timestamp; escalation produces a copyable summary with required fields.",
+      "reason": "Frontend provides resolve/escalate actions, but the backend session status type shown includes #resolved/#escalated without any resolution timestamp field, so recording a resolution timestamp is not evidenced. Locking step editing is only partially implied via an isReadOnly prop, but the enforcement logic is not shown.",
+      "evidence": [
+        "backend/main.mo (truncated)",
+        "frontend/src/components/session/SessionOutcomeActions.tsx",
+        "frontend/src/components/session/RunbookStepper.tsx (truncated)"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "User profile creation/setup flow (name prompt) and backend user profile storage.",
+      "reason": "BuildRequest does not request user profiles or requiring a name before using the app; it only requires Internet Identity auth and associating sessions with principal.",
+      "evidence": [
+        "backend/main.mo (truncated)",
+        "frontend/src/components/auth/ProfileSetupDialog.tsx",
+        "frontend/src/components/auth/AuthGate.tsx"
+      ]
+    },
+    {
+      "description": "Admin/role-based access control system with secret-token initialization and admin-only runbook creation API.",
+      "reason": "BuildRequest does not request an admin role system, secret token bootstrapping, or runtime authorization mixins; it focuses on per-principal ownership and history isolation.",
+      "evidence": [
+        "backend/main.mo (truncated)",
+        "frontend/src/hooks/useActor.ts"
+      ]
+    }
+  ],
+  "confidence": 0.62,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/components/auth/AccessDeniedScreen.tsx",
+    "frontend/src/components/auth/AuthGate.tsx",
+    "frontend/src/components/auth/LoginButton.tsx",
+    "frontend/src/components/auth/ProfileSetupDialog.tsx",
+    "frontend/src/components/history/HistoryFilters.tsx",
+    "frontend/src/components/intake/CategoryPicker.tsx",
+    "frontend/src/components/intake/SymptomQuestionnaire.tsx",
+    "frontend/src/components/layout/AppHeader.tsx",
+    "frontend/src/components/layout/AppLayout.tsx",
+    "frontend/src/components/session/QuickActionPanel.tsx",
+    "frontend/src/components/session/RunbookStepper.tsx",
+    "frontend/src/components/session/SessionOutcomeActions.tsx",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/index.css",
+    "frontend/src/lib/clipboard.ts",
+    "frontend/src/lib/recommendation.ts",
+    "frontend/src/lib/runbooks/catalog.ts",
+    "frontend/src/lib/sessionFormatting.ts",
+    "frontend/src/lib/utils.ts",
+    "frontend/src/main.tsx",
+    "frontend/src/pages/HistoryPage.tsx",
+    "frontend/src/pages/SessionDetailPage.tsx",
+    "frontend/src/pages/StartIntakePage.tsx",
+    "frontend/src/utils/urlParams.ts",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}
