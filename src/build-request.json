@@ -1,188 +1,32 @@
 {
   "kind": "build_request",
-  "title": "Self-healing IT Support App (guided troubleshooting + fix playbooks)",
+  "title": "Account sign-in (Internet Identity)",
   "projectName": "SelfHeal IT",
   "priority": "normal",
-  "requirements": [
-    {
-      "id": "REQ-1",
-      "text": "Implement Internet Identity sign-in and use the authenticated principal as the user identity for all saved troubleshooting sessions and history.",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ],
-        "quotes": [
-          "self heal app for IT support"
-        ]
-      },
-      "acceptanceCriteria": [
-        "A signed-out user is prompted to sign in with Internet Identity before creating or viewing troubleshooting sessions.",
-        "Troubleshooting sessions created after sign-in are associated with the caller principal in the backend.",
-        "A user can only view their own troubleshooting history."
-      ]
-    },
-    {
-      "id": "REQ-2",
-      "text": "Create a guided “Issue Intake” flow where a user selects an issue category (e.g., Network/Wi‑Fi, VPN, Email, Printer, Slow Computer, Account/Password, Software Install) and answers a short symptom questionnaire to generate a troubleshooting session.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ],
-        "quotes": [
-          "self heal app for IT support"
-        ]
-      },
-      "acceptanceCriteria": [
-        "The user can start a new troubleshooting session from the home screen.",
-        "The intake flow captures: category, a short title, symptom selections, and optional free-text notes.",
-        "Submitting the intake creates a new session and navigates to a session detail view."
-      ]
-    },
-    {
-      "id": "REQ-3",
-      "text": "Add backend support for troubleshooting sessions, including creating a session, updating its status (in_progress/resolved/escalated), appending step outcomes, and listing sessions for the current user.",
-      "target": "backend",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ],
-        "quotes": [
-          "self heal app for IT support"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Backend exposes methods to: createSession, getSession, listMySessions, recordStepResult, setSessionStatus.",
-        "Sessions persist across page reloads and can be retrieved later by the same principal.",
-        "Attempting to access a session owned by a different principal is rejected."
-      ]
-    },
-    {
-      "id": "REQ-4",
-      "text": "Provide a built-in catalog of common IT issues with guided troubleshooting steps (“runbooks”), including decision points and clear instructions, and show the recommended runbook in the session detail view.",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ],
-        "quotes": [
-          "self heal app for IT support"
-        ]
-      },
-      "acceptanceCriteria": [
-        "At least 6 categories are available with at least 3 issues/runbooks per category (minimum 18 runbooks total).",
-        "Each runbook is composed of ordered steps with: title, instruction text, and an expected user action (e.g., confirm/yes-no/mark-done).",
-        "The session detail view displays the recommended runbook based on the selected category/symptoms and allows the user to proceed step-by-step."
-      ]
-    },
-    {
-      "id": "REQ-5",
-      "text": "Support “automated fixes” as safe, simulated actions (since the app cannot directly control the user’s device), by presenting one-click actions that record an outcome and show what to do on the device (copyable commands or UI navigation) rather than executing system changes.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ],
-        "quotes": [
-          "self heal app for IT support"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Steps can include an optional “Quick Action” button that (a) copies a command/snippet or (b) reveals concise instructions, and (c) records that the user attempted it.",
-        "The UI clearly labels quick actions as guided/simulated (no device changes are executed by the app)."
-      ]
-    },
-    {
-      "id": "REQ-6",
-      "text": "Add troubleshooting outcomes and escalation support: users can mark a session resolved, or escalate it by generating a concise incident summary (symptoms, steps attempted, results) that can be copied for an IT ticket.",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ],
-        "quotes": [
-          "self heal app for IT support"
-        ]
-      },
-      "acceptanceCriteria": [
-        "A session can be marked Resolved, which locks step editing and records a resolution timestamp.",
-        "A session can be marked Escalated and produces a copyable summary text block.",
-        "The summary includes: category, title, symptoms, notes, and a chronological list of steps + outcomes."
-      ]
-    },
-    {
-      "id": "REQ-7",
-      "text": "Create a “History” view where users can search and filter their past sessions by status and category, and open a session to review the troubleshooting timeline.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ],
-        "quotes": [
-          "self heal app for IT support"
-        ]
-      },
-      "acceptanceCriteria": [
-        "The history list loads the current user’s sessions from the backend.",
-        "Users can filter by status and category and search by title/notes.",
-        "Selecting a session opens a read-only timeline of steps and results."
-      ]
-    },
-    {
-      "id": "REQ-8",
-      "text": "Apply a coherent, distinctive visual theme for an IT support product and enforce it consistently across pages (typography, spacing, components, and tone), using English for all user-facing text.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ],
-        "quotes": [
-          "Use English for any user-facing text in the build request."
-        ]
-      },
-      "acceptanceCriteria": [
-        "All visible UI text is in English.",
-        "The app uses a consistent theme (e.g., neutral/slate + accent color) across navigation, cards, buttons, and forms without mixing styles.",
-        "Key screens (Start/Intake, Session Detail, History) share consistent layout and components."
-      ]
-    },
-    {
-      "id": "REQ-9",
-      "text": "Generate required static image assets and render them in the UI from frontend/public/assets/generated (do not fetch images through the backend).",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ],
-        "quotes": [
-          "self heal app for IT support"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Generated images exist under frontend/public/assets/generated and are referenced directly by the frontend.",
-        "The app displays a logo in the header and a hero/illustration on the landing/start screen.",
-        "Category icons are used in the issue category selection UI."
-      ]
-    }
-  ],
+  "requirements": [],
   "constraints": [
-    "Backend must remain a single Motoko actor (all logic in backend/main.mo).",
-    "Do not edit files under frontend/src/components/ui (compose them only).",
-    "Do not edit frontend immutable paths: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx."
+    "Do not add new authentication providers; Internet Identity must remain the only supported sign-in method.",
+    "Do not edit files in frontend immutablePaths (frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui).",
+    "Keep all Motoko backend logic in the single actor (backend/main.mo). Only add backend/migration.mo if state schema changes require migration.",
+    "Use English for all user-facing text."
   ],
   "nonGoals": [
-    "Direct device management (e.g., actually resetting network adapters, editing registry, changing OS settings) from the app.",
-    "Real-time chat or live agent messaging.",
-    "Third-party auth providers other than Internet Identity.",
-    "Integration with external ticketing systems (e.g., ServiceNow, Jira) beyond copyable escalation summaries."
+    "Adding username/password accounts or email/password sign-in.",
+    "Integrating third-party OAuth providers (Google, GitHub, Facebook, Auth0).",
+    "Adding multi-factor authentication settings screens beyond what Internet Identity provides."
   ],
   "imageRequirements": {
-    "required": [
-      "Minimalist wrench+spark logo, flat vector style, dark on transparent background (selfheal-logo.dim_512x512.png)",
-      "Isometric IT support desk illustration with laptop, router, and checklist, soft neutral palette (it-support-hero.dim_1600x900.png)",
-      "Set of 6 flat monochrome category icons (network, vpn, email, printer, performance, account) on transparent background (category-icons-sprite.dim_1024x1024.png)"
-    ],
+    "required": [],
     "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
   }
 }

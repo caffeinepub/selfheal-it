@@ -105,6 +105,9 @@ actor {
   };
 
   public query ({ caller }) func getRunbook(id : Text) : async Runbook {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
+      Runtime.trap("Unauthorized: Only users can access runbooks");
+    };
     switch (runbooks.get(id)) {
       case (?runbook) { runbook };
       case (null) { Runtime.trap("Runbook not found") };
@@ -112,6 +115,9 @@ actor {
   };
 
   public query ({ caller }) func listRunbooks() : async [Runbook] {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
+      Runtime.trap("Unauthorized: Only users can list runbooks");
+    };
     runbooks.values().toArray();
   };
 

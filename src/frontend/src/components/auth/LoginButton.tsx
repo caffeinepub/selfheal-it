@@ -28,7 +28,13 @@ export default function LoginButton() {
   };
 
   return (
-    <Button onClick={handleAuth} disabled={disabled} size="lg" variant={isAuthenticated ? 'outline' : 'default'}>
+    <Button 
+      onClick={handleAuth} 
+      disabled={disabled} 
+      size="lg" 
+      variant={isAuthenticated ? 'outline' : 'default'}
+      className="min-w-[140px]"
+    >
       {loginStatus === 'logging-in' ? (
         <>
           <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -42,7 +48,7 @@ export default function LoginButton() {
       ) : (
         <>
           <LogIn className="mr-2 h-4 w-4" />
-          Sign In
+          Sign In with Internet Identity
         </>
       )}
     </Button>
